@@ -1,0 +1,170 @@
+/* Defina o body e o html para 100% de altura */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Organize os elementos em uma coluna */
+}
+
+/* O conteúdo principal da página (corpo) deve ocupar o espaço restante */
+corpo {
+    flex: 1; /* Isso garante que o conteúdo ocupe o espaço disponível */
+}
+
+
+/* Estilo do header e footer */
+header, footer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b20707;
+    color: white;
+    padding: 10px 0;
+    text-align: center;  /* Centraliza o texto */
+    position: relative;
+}
+
+/* Estilo do texto "Lorem Ipsum" */
+.lorem-text {
+    display: none;  /* Inicialmente o texto está oculto */
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #1f1f1f;
+}
+
+/* Estilo do corpo */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+/* Estilo dos botões */
+button {
+    align-items: center;
+    padding: 10px 15px;
+    margin: 8px 8px;
+    cursor: pointer;
+    background-color: #af0000;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: "Press Start 2P", serif;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Suaviza a transição */
+}
+
+/* Efeito de hover nos botões */
+button:hover {
+    background-color: #700101; /* Altera a cor de fundo */
+    transform: scale(1.05); /* Leve aumento no botão */
+}
+
+/* Estilo do container das colunas de imagem */
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+    width: 80%;
+    justify-content: center;  /* Centraliza as colunas */
+    margin-bottom: 12px;  /* Espaço entre as colunas */
+}
+
+.baixar {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+    width: 80%;
+    justify-content: center;  /* Centraliza as colunas */
+    margin-bottom: 12px;  /* Espaço entre as colunas */
+}
+
+/* Estilo das seções de entrada de imagem */
+.input-section {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centraliza os itens dentro da coluna */
+    text-align: center;  /* Garante que os textos também fiquem centralizados */
+    margin-bottom: 12px;  /* Margem para garantir o espaçamento entre as colunas */
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 200px;  /* Define a largura máxima do input */
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;  /* Adiciona espaçamento entre os inputs */
+}
+
+/* Estilo para as imagens dentro das colunas */
+.image-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;  /* Centraliza as imagens dentro do container */
+}
+
+.image-container img {
+    height: 250px; /* Limita a altura da imagem */
+    width: auto;   /* Mantém a proporção da imagem */
+}
+
+/* Estilo do footer */
+footer {
+    background-color: #b20707;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%; /* Garante que o footer ocupe toda a largura da página */
+    position: relative;
+}
+
+/* Esconder inputs e botões quando a imagem for gerada */
+.hide-on-capture {
+    display: none;
+}
+
+/* Quebra de linha para separar a imagem do botão de download */
+.generated-image-container img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;  /* Adiciona uma margem inferior para separar a imagem do botão */
+}
+
+/* Media Query para telas pequenas (abaixo de 728px de largura) */
+@media (max-width: 728px) {
+    .container {
+        flex-direction: column; /* Coloca as colunas em sequência */
+        width: 90%;  /* Diminui a largura da container para telas pequenas */
+    }
+
+    .input-section {
+        width: 100%; /* Faz as colunas ocuparem toda a largura disponível */
+        margin-bottom: 12px;  /* Adiciona espaçamento entre as colunas */
+    }
+}
+
+
+.texto {
+        font-family: "Press Start 2P", serif;
+        font-weight: 400;
+        font-style: normal;
+        color: #141414;
+        align-items: center;
+        justify-content: center;
+    }

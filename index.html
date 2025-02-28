@@ -4,97 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Imagens</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 18px;
-        }
-
-        button {
-            padding: 10px 15px;
-            cursor: pointer;
-            background-color: #5cb85c;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-top: 30px;
-            width: 80%;
-        }
-
-        .input-section {
-            width: 45%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .image-container {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .image-container img {
-            width: 200px;
-            height: auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .download-container {
-            margin-top: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o CSS -->
 </head>
-<body>
-    <!-- Header com dois botões -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<body style="height: 100%;
+margin: 0;
+display: flex;
+flex-direction: column;">
+    <!-- Header com um botão e o texto Lorem Ipsum -->
     <header>
-        <button onclick="alert('Botão 1 clicado!')">Botão 1</button>
-        <button onclick="alert('Botão 2 clicado!')">Botão 2</button>
+        <button onclick="toggleText()">Guia</button>
+        <p id="loremText" class="lorem-text"> <b>1. Acesse o site</b><br>
+            Abra o navegador e vá até o site: <a href="https://www.pokemon-zone.com/cards/.">Pokémon Zone</a><br>
+            <b>2. Encontre as imagens das cartas</b><br>
+            No site, busque as imagens das cartas que você possui e das que você precisa para sua coleção.<br>
+            Copie o link direto da imagem da carta.<br>
+            <b>3. Preencha os campos</b><br>
+            No site de geração de imagens, cole o link das imagens nos respectivos campos:<br>
+            Campo das cartas que você possui: Cole o link da carta que já tem.<br>
+            Campo das cartas que faltam: Cole o link da carta que ainda precisa.<br>
+            <b>4. Gere a imagem</b><br>
+            Após preencher ambos os campos, clique no botão "Gerar Imagem".<br>
+           <b>5. Baixe a imagem gerada</b><br>
+            Quando a imagem for gerada, você verá uma prévia.<br>
+            Clique no botão "Download" para baixar a imagem para o seu computador ou dispositivo.</p>
     </header>
 
-    <h1>Adicionar Imagens</h1>
+    <h1 class="texto">TGCP <br> Card Tracker</h1>
 
     <!-- Container com as duas colunas de input -->
     <div class="container">
         <!-- Primeira coluna (Tenho) -->
         <div class="input-section">
-            <h2>Tenho</h2>
+            <h2 class="texto">Tenho</h2>
             <input type="text" id="imageUrl1" placeholder="Cole o link da imagem aqui">
             <button onclick="addImage(1)">Adicionar Imagem</button>
             <div class="image-container" id="imageContainer1"></div>
@@ -102,7 +46,7 @@
 
         <!-- Segunda coluna (Preciso) -->
         <div class="input-section">
-            <h2>Preciso</h2>
+            <h2 class="texto">Preciso</h2>
             <input type="text" id="imageUrl2" placeholder="Cole o link da imagem aqui">
             <button onclick="addImage(2)">Adicionar Imagem</button>
             <div class="image-container" id="imageContainer2"></div>
@@ -111,46 +55,21 @@
 
     <!-- Botão para gerar imagem do conteúdo -->
     <div class="download-container">
-        <button onclick="generateImage()">Gerar Imagem do Conteúdo</button>
+        <button onclick="generateImage()">Gerar Imagem do Conteúdo</button><br>
     </div>
 
-    <!-- Importando a biblioteca html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <!-- Container para exibir a imagem gerada -->
+    <div class="generated-image-container" id="generatedImageContainer">
+        <!-- A imagem gerada e o botão de download aparecerão aqui -->
+    </div>
 
-    <script>
-        // Função para adicionar imagem em qualquer uma das duas seções
-        function addImage(section) {
-            const imageUrl = document.getElementById(`imageUrl${section}`).value;
-            const imageContainer = document.getElementById(`imageContainer${section}`);
+    <!-- Importando a versão mais recente do html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script> <!-- Link para o JS -->
 
-            if (imageUrl) {
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = 'Imagem inserida pelo usuário';
-                img.onerror = () => {
-                    alert('O link fornecido não é válido ou a imagem não pôde ser carregada.');
-                };
-
-                imageContainer.appendChild(img);
-                document.getElementById(`imageUrl${section}`).value = ''; // Limpa o campo de input
-            } else {
-                alert('Por favor, insira um link de imagem.');
-            }
-        }
-
-        // Função para gerar uma imagem do conteúdo da página
-        function generateImage() {
-            console.log('Gerando imagem...');
-            html2canvas(document.querySelector('.container')).then(function(canvas) {
-                console.log('Imagem gerada');
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL();  // Converte o canvas para imagem
-                link.download = 'conteudo.png';  // Nome do arquivo a ser baixado
-                link.click();  // Simula o clique para baixar a imagem
-            }).catch(function(error) {
-                console.error('Erro ao gerar a imagem:', error);
-            });
-        }
-    </script>
+    <!-- Footer -->
+    <footer>
+        <p>Feito por <b>Thiago Francisco</b></p>
+    </footer>
 </body>
 </html>
