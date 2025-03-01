@@ -12,6 +12,14 @@ function addImage(section) {
         img.onload = () => {
             imageContainer.appendChild(img);
             document.getElementById(`imageUrl${section}`).value = ''; // Limpa o campo de input
+
+            // Adicionar evento de clique para remover a imagem
+            img.onclick = function() {
+                const confirmRemoval = confirm("Você deseja remover esta imagem?");
+                if (confirmRemoval) {
+                    imageContainer.removeChild(img); // Remove a imagem
+                }
+            };
         };
 
         img.onerror = () => {
@@ -95,19 +103,6 @@ function generateImage() {
             // Aplicar a classe para centralizar o conteúdo
             generatedImageContainer.classList.add('centered-container');  // Classe que centraliza o conteúdo
             generatedImageContainer.appendChild(imgElement);
-
-            // Criar o botão de download
-            const downloadButton = document.createElement('button');
-            downloadButton.textContent = 'Baixar Imagem';
-            downloadButton.onclick = function() {
-                const link = document.createElement('a');
-                link.href = imageURL;
-                link.download = 'conteudo.png';  // Nome do arquivo
-                link.click();
-            };
-
-            // Adicionar o botão de download abaixo da imagem
-            generatedImageContainer.appendChild(downloadButton);
         }).catch(function(error) {
             console.error('Erro ao gerar a imagem:', error);
         }).finally(() => {
